@@ -6,13 +6,20 @@ namespace PostgresTestApplication
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
+        private static Lazy<IConfigurationRoot> _configuration = new Lazy<IConfigurationRoot>(BuildConfiguration);
+
+        private static IConfigurationRoot BuildConfiguration(){
             Console.WriteLine("Carico la configurazione...");
-            var builder = new ConfigurationBuilder()
+            return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
+        }
+
+        public static IConfigurationRoot Configuration => _configuration.Value;
+
+        public static void Main(string[] args)
+        {
         }
     }
 }
