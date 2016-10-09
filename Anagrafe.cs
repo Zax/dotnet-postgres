@@ -1,10 +1,14 @@
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PostgresTestApplication
 {
+    [Table("anagrafe")]
     public class Anagrafe
     {
+        [Key]
         public string cod_fisc { get; set; }
         public DateTime? data_nascita { get; set; }
         public DateTime? data_decesso { get; set; }
