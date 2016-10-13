@@ -34,7 +34,7 @@ namespace PostgresTestApplication
         public static void Main(string[] args)
         {
             int righe;
-            if (args.Length == 0 || !int.TryParse(args[1], out righe))
+            if (args.Length == 0 || !int.TryParse(args[0], out righe))
             {
                 righe = 1000;
             }
