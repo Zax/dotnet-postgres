@@ -10,10 +10,15 @@ namespace PostgresTestApplication
     {
         [Key]
         public string cod_fisc { get; set; }
+        [Column(TypeName="Date")]
         public DateTime? data_nascita { get; set; }
+        [Column(TypeName="Date")]
         public DateTime? data_decesso { get; set; }
+        [Column(TypeName="Date")]
         public DateTime? data_inizio_assistenza { get; set; }
+        [Column(TypeName="Date")]
         public DateTime? data_fine_assistenza { get; set; }
+        [Column(TypeName="Date")]
         public DateTime? data_riferimento { get; set; }
         public string sesso { get; set; }
         public string stato_id { get; set; }

@@ -8,7 +8,7 @@ using PostgresTestApplication;
 namespace Postgres.Migrations
 {
     [DbContext(typeof(PostgreSqlContext))]
-    [Migration("20161009161548_init")]
+    [Migration("20161013152528_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,15 +28,20 @@ namespace Postgres.Migrations
 
                     b.Property<string>("comune_residenza");
 
-                    b.Property<DateTime?>("data_decesso");
+                    b.Property<DateTime?>("data_decesso")
+                        .HasColumnType("Date");
 
-                    b.Property<DateTime?>("data_fine_assistenza");
+                    b.Property<DateTime?>("data_fine_assistenza")
+                        .HasColumnType("Date");
 
-                    b.Property<DateTime?>("data_inizio_assistenza");
+                    b.Property<DateTime?>("data_inizio_assistenza")
+                        .HasColumnType("Date");
 
-                    b.Property<DateTime?>("data_nascita");
+                    b.Property<DateTime?>("data_nascita")
+                        .HasColumnType("Date");
 
-                    b.Property<DateTime?>("data_riferimento");
+                    b.Property<DateTime?>("data_riferimento")
+                        .HasColumnType("Date");
 
                     b.Property<string>("sesso");
 
