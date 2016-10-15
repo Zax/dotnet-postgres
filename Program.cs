@@ -14,7 +14,7 @@ namespace PostgresTestApplication
 
         private static IConfigurationRoot BuildConfiguration()
         {
-            Console.WriteLine("Carico la configurazione...");
+            Console.WriteLine("Load configuration...");
             return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
@@ -33,14 +33,14 @@ namespace PostgresTestApplication
 
         public static void Main(string[] args)
         {
-            int righe;
-            if (args.Length == 0 || !int.TryParse(args[0], out righe))
+            int rows;
+            if (args.Length == 0 || !int.TryParse(args[0], out rows))
             {
-                righe = 1000;
+                rows = 1000;
             }
             var data = new List<Anagrafe>();
-            Console.WriteLine($"Generazione dei dati ({righe} righe)...");
-            for (int i = 0; i < righe; i++)
+            Console.WriteLine($"Generate random data ({rows} rows)...");
+            for (int i = 0; i < rows; i++)
             {
                 data.Add(new Anagrafe()
                 {
@@ -68,7 +68,7 @@ namespace PostgresTestApplication
                 db.SaveChanges();
             }
             var fine = DateTime.Now;
-            Console.WriteLine($"Inserite {righe} righe in {fine.Subtract(inizio).TotalSeconds} secondi.");
+            Console.WriteLine($"Inserted {rows} rows on {fine.Subtract(inizio).TotalSeconds} seconds.");
             ResetData();
             Console.WriteLine("--- Dapper ---");
             inizio = DateTime.Now;
@@ -80,14 +80,13 @@ namespace PostgresTestApplication
                     values (@cod_fisc, @data_riferimento, @data_nascita, @data_decesso, @data_inizio_assistenza, @data_fine_assistenza, @sesso, @stato_id, @comune_nascita, @comune_residenza, @codice_medico, @asl_assistenza)", data.ToArray());
             }
             fine = DateTime.Now;
-            Console.WriteLine($"Inserite {righe} righe in {fine.Subtract(inizio).TotalSeconds} secondi.");
+            Console.WriteLine($"Inserted {rows} rows on {fine.Subtract(inizio).TotalSeconds} seconds.");
             ResetData();
             Console.WriteLine("--- Npgsql COPY ---");
             inizio = DateTime.Now;
             using (var connection = new NpgsqlConnection(Configuration.GetConnectionString("Default")))
             {
                 connection.Open();
-                Console.WriteLine("Salvataggio dei dati...");
                 using (var writer = connection.BeginBinaryImport(@"COPY anagrafe (cod_fisc, data_riferimento, data_nascita, data_decesso, data_inizio_assistenza, data_fine_assistenza, sesso, stato_id, comune_nascita, comune_residenza, codice_medico, asl_assistenza) FROM STDIN (FORMAT BINARY)"))
                 {
                     foreach (var item in data)
@@ -109,7 +108,7 @@ namespace PostgresTestApplication
                 }
             }
             fine = DateTime.Now;
-            Console.WriteLine($"Inserite {righe} righe in {fine.Subtract(inizio).TotalSeconds} secondi.");
+            Console.WriteLine($"Inserted {rows} rows on {fine.Subtract(inizio).TotalSeconds} seconds.");
             ResetData();
         }
     }

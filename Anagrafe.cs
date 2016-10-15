@@ -26,7 +26,6 @@ namespace PostgresTestApplication
         public string comune_residenza { get; set; }
         public string codice_medico { get; set; }
         public string asl_assistenza { get; set; }
-
     }
 
 }
