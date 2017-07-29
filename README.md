@@ -10,3 +10,6 @@ create user 'test' (password 'test') on postgres
 create database 'test' on postgres
 dotnet ef database update
 dotnet run
+
+## results
+![stats](stats.png)

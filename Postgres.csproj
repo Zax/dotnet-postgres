@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>Postgres</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Postgres</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.2"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2"/>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.1"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.1"/>
+  </ItemGroup>
+</Project>
